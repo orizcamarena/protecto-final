@@ -1,0 +1,59 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Inicio {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<section class="slice slice-lg" id="sct-form-contact">
+  <div class="container position-relative zindex-100">
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-6 text-center">
+        <h3>Bienvendido {{ current_user.name }}</h3>
+        <p class="lh-190">Aqui puedes añadir nuevos amigos!!</p>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <!-- Form -->
+
+        <form method="POST" , action="/inicio" />
+
+        <div class="error" id="error-message">
+          {% if error %}
+          <p>{{ error }}</p>
+          {% endif %}
+        </div>
+
+        {% if users %}
+        <ul>
+          {% for user in users %}
+          <li><a href="/user/{{ user.numero }}/">{{ user.name }}</a></li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+
+        <div class="form-group">
+          <div class="form-group">
+            <input id="user_id" name="user_id" class="form-control form-control-lg" type="text" placeholder="Phone number" required>
+        </div>
+        </div>
+        <div class="text-center">
+          <!-- <div class="g-recaptcha" data-sitekey="6Lfs5ScUAAAAANAJwGrdfvWLFRRiVbKRE2vfoaFj"></div> -->
+          <button type="reset" class="btn-reset d-none"></button>
+          <input type="submit" value="Añadir" class="btn btn-block btn-lg btn-primary mt-4"></input>
+        </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

@@ -1,0 +1,72 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Perfil {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+
+<!-- Modal -->
+<div class="modal fade" id="deleteAccountModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Eliminar cuenta</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p>¿Estás seguro de que deseas eliminar tu cuenta? Esta acción no se puede deshacer.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <form method="POST" action="{{ url_for('eliminar_cuenta') }}">
+          <input type="submit" class="btn btn-danger" value="Eliminar cuenta">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="slice slice-lg">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-lg-4">
+        <div class="card text-center hover-translate-y-n10 hover-shadow-lg">
+          <div class="px-5 pb-5 pt-5">
+            <div class="py-4">
+              <div class="icon text-warning icon-sm mx-auto">
+                <i data-feather="settings"></i>
+              </div>
+            </div>
+            <h1>Perfil de {{ current_user.name }}</h1>
+            <p>Nombre: {{ current_user.name }}</p>
+            <p>Correo: {{ current_user.correo }}</p>
+            <p>Número: {{ current_user.numero }}</p>
+            
+            <ul class="navbar-nav mt-4 mt-lg-0 ml-auto">
+              <li class="nav-item ">
+                  <a class="nav-link-personalizate" href="{{ url_for('inicio') }}">Regresar al inicio</a>
+              </li>
+            </ul>
+          
+          </div>
+          <button type="button" class="btn btn-danger btn-per" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
+            Eliminar cuenta
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
